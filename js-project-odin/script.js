@@ -62,7 +62,7 @@ function winnerOfGame() {
         return "The winner is the Human with " + humanScore + " points.";
     } else if (computerScore > humanScore) {
         return "The winner is the Computer with " + computerScore + " points.";
-    } else if (computerScore === humanScore) {
+    } else {
         return "Draw! No one wins."
     }
 }
