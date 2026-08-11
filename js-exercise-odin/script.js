@@ -1,19 +1,10 @@
-let firstName = "John";
-let lastName = "Doe";
+function unique(arr) {
+    let newArr = new Set(arr);
+    return [...newArr];
+}
 
-console.log(firstName);
-console.log(lastName);
+let strings = ["Hare", "Krishna", "Hare", "Krishna",
+    "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
 
-let age = 11;
-
-console.log(age);
-
-age = 54;
-
-console.log(age);
-
-const pi = 3.14;
-
-pi = 10;
-
-console.log(pi);
+console.log(unique(strings));
