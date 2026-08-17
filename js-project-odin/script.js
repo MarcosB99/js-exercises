@@ -1,3 +1,20 @@
+const container = document.querySelector(".container");
+const rockBtn = document.createElement("button");
+const paperBtn = document.createElement("button");
+const scissorsBtn = document.createElement("button");
+const results = document.createElement("div");
+const resultsLabel = document.createElement("p");
+const pointsOfGame = document.createElement("p");
+const winnerOfRPS = document.createElement("p");
+
+let humanScore = 0;
+let computerScore = 0;
+
+rockBtn.textContent = "Rock";
+paperBtn.textContent = "Paper";
+scissorsBtn.textContent = "Scissors";
+results.setAttribute("style", "class='results'");
+
 function getComputerChoice() {
     let compChoice = Math.floor(Math.random() * 3);
 
@@ -10,56 +27,70 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let answer = prompt("Please enter your option for the game Rock, Paper & Scissors: ");
-    return answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
-}
+rockBtn.addEventListener("click", () => {
+    console.log(playRound(getComputerChoice(), "Rock"));
+
+});
+
+paperBtn.addEventListener("click", () => {
+    console.log(playRound(getComputerChoice(), "Paper"));
+});
+
+scissorsBtn.addEventListener("click", () => {
+    console.log(playRound(getComputerChoice(), "Scissors"));
+});
 
 function playRound(computerChoice, humanChoice) {
 
     if (computerChoice === "Rock" && humanChoice === "Scissors") {
         computerScore++;
-        return "You lose! Rock beats Scissors";
+        resultsLabel.textContent = "You lose! Rock beats Scissors";
+        pointsOfGame.textContent = "Human: " + humanScore + " | Computer: " + computerScore;
     } else if (computerChoice === "Paper" && humanChoice === "Rock") {
         computerScore++;
-        return "You lose! Paper beats Rock";
+        resultsLabel.textContent = "You lose! Paper beats Rock";
+        pointsOfGame.textContent = "Human: " + humanScore + " | Computer: " + computerScore;
     } else if (computerChoice === "Scissors" && humanChoice === "Paper") {
         computerScore++;
-        return "You lose! Scissors beats paper";
+        resultsLabel.textContent = "You lose! Scissors beats paper";
+        pointsOfGame.textContent = "Human: " + humanScore + " | Computer: " + computerScore;
     } else if (computerChoice === humanChoice) {
-        return "Draw! No one wins."
+        resultsLabel.textContent = "Draw! No one wins."
+        pointsOfGame.textContent = "Human: " + humanScore + " | Computer: " + computerScore;
     } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
         humanScore++;
-        return "You win! Rock beats Scissors";
+        resultsLabel.textContent = "You win! Rock beats Scissors";
+        pointsOfGame.textContent = "Human: " + humanScore + " | Computer: " + computerScore;
     } else if (humanChoice === "Paper" && computerChoice === "Rock") {
         humanScore++;
-        return "You win! Paper beats Rock";
+        resultsLabel.textContent = "You win! Paper beats Rock";
+        pointsOfGame.textContent = "Human: " + humanScore + " | Computer: " + computerScore;
     } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
         humanScore++;
-        return "You Win! Scissors beats paper";
+        resultsLabel.textContent = "You Win! Scissors beats paper";
+        pointsOfGame.textContent = "Human: " + humanScore + " | Computer: " + computerScore;
     }
+    winnerOfGame();
 }
-
-let humanScore = 0;
-let computerScore = 0;
-
-const rockBtn = document.createElement("button");
-const paperBtn = document.createElement("button");
-const scissorsBtn = document.createElement("button");
-
-
-console.log(playGame());
-console.log("Human Score: " + humanScore);
-console.log("Computer Score: " + computerScore);
 
 function winnerOfGame() {
-    if (humanScore > computerScore) {
-        return "The winner is the Human with " + humanScore + " points.";
-    } else if (computerScore > humanScore) {
-        return "The winner is the Computer with " + computerScore + " points.";
-    } else {
-        return "Draw! No one wins."
+    if (humanScore === 5) {
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
+        return winnerOfRPS.textContent = "The winner is the Human with " + humanScore + " points.";
+    } else if (computerScore === 5) {
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
+        return winnerOfRPS.textContent = "The winner is the Computer with " + computerScore + " points.";
     }
 }
 
-console.log(winnerOfGame());
+container.appendChild(rockBtn);
+container.appendChild(paperBtn);
+container.appendChild(scissorsBtn);
+container.appendChild(results);
+container.appendChild(resultsLabel);
+container.appendChild(pointsOfGame);
+container.appendChild(winnerOfRPS);
