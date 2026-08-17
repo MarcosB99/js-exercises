@@ -43,15 +43,10 @@ function playRound(computerChoice, humanChoice) {
 let humanScore = 0;
 let computerScore = 0;
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        console.log(playRound(computerSelection, humanSelection));
-    }
+const rockBtn = document.createElement("button");
+const paperBtn = document.createElement("button");
+const scissorsBtn = document.createElement("button");
 
-    return "End of game.";
-}
 
 console.log(playGame());
 console.log("Human Score: " + humanScore);
