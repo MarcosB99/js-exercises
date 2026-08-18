@@ -6,12 +6,26 @@ container.appendChild(gridSize);
 container.appendChild(subContainer);
 gridSize.textContent = "Select Grid Size";
 
+function getRandomColor() {
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+
+    return `rgb(${red}, ${green}, ${blue})`;
+}
+
 for (let i = 0; i < 16; i++) {
     const square = document.createElement("div");
+    square.dataset.interactions = 0;
     square.classList.add("grid-square");
     subContainer.appendChild(square);
     square.addEventListener("mouseover", () => {
-        square.classList.add("hovered");
+        square.dataset.interactions = parseInt(square.dataset.interactions) + 1;
+        if (parseInt(square.dataset.interactions) === 1) {
+            square.style.backgroundColor = getRandomColor();
+        }
+        let currentBrightness = 1 - (parseInt(square.dataset.interactions) * 0.1);
+        square.style.filter = `brightness(${currentBrightness})`;
     })
 }
 
@@ -24,6 +38,7 @@ gridSize.addEventListener("click", () => {
     subContainer.innerHTML = "";
     for (let i = 0; i < userInput * userInput; i++) {
         const square = document.createElement("div");
+        square.dataset.interactions = 0;
         square.classList.add("new-grid-square");
         let size = 100 / userInput;
 
@@ -31,7 +46,13 @@ gridSize.addEventListener("click", () => {
         square.style.height = size + "%";
         subContainer.appendChild(square);
         square.addEventListener("mouseover", () => {
-            square.classList.add("hovered");
+            square.dataset.interactions = parseInt(square.dataset.interactions) + 1;
+            if (parseInt(square.dataset.interactions) === 1) {
+                square.style.backgroundColor = getRandomColor();
+            }
+
+            let currentBrightness = 1 - (parseInt(square.dataset.interactions) * 0.1);
+            square.style.filter = `brightness(${currentBrightness})`;
         });
     }
 });
