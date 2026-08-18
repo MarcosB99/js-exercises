@@ -22,12 +22,17 @@
   height: 100%;
   flex-wrap: wrap;
   padding: 1%;
+  align-content: flex-start;
 }
 
 .sub-container .grid-square {
   border: 1px solid black;
   width: 25%;
   height: 25%;
+}
+
+.sub-container .new-grid-square {
+  border: 1px solid black;
 }
 
 .hovered {
