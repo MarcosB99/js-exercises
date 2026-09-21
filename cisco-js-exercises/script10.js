@@ -11,12 +11,16 @@ do {
         if (movies.length === 0) {
             console.log(`No movies were added to the array.`);
         } else {
-            for (let i = 0; i < movies.length; i++) {
-                if (movies[i].imdb < 7) {
-                    console.log(`The list of movies with a rating below 7 added are:`);
-                    for (let movie of movies) {
-                        console.log(`${movie.title} (${movie.imdb})`);
-                    }
+            console.log(`The list of movies with a rating below 7 added are:`);
+            for (let movie of movies) {
+                if (movie.imdb < 7) {
+                    console.log(`${movie.title} (${movie.imdb})`);
+                }
+            }
+            console.log(`The list of movies with a rating greater or equal than 7 added are:`);
+            for (let movie of movies) {
+                if (movie.imdb >= 7) {
+                    console.log(`${movie.title} (${movie.imdb})`);
                 }
             }
         }
@@ -25,7 +29,8 @@ do {
         let movieRating = Number(inputRating);
 
         if (Number.isNaN(movieRating)) {
-            console.log(`Please enter a valid number for the rating. Reload the screen.`);
+            alert(`Please enter a valid number for the rating. Reload the screen.`);
+            isTrue = true;
         } else {
             movies.push({ title: movieName, imdb: movieRating });
         }
